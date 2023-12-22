@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { login } from "../api/firebase";
+import { login, logout } from "../api/firebase";
 
 export default function Navbar() {
+	// 로그인한 사용자의 정보, 상태 필요
+	const [ user, setUser ] = useState();
+	const handleLogin = () => {
+		login().then(setUser);
+	} 
+
+	const handleLogout = () => {
+		console.log("logout!!!!!")
+		logout().then(setUser);
+	}
+
 	return (
 		<header className="flex justify-between border-b border-gray-300 p-2">
 			<Link to='/' className="flex items-center text-4xl text-brand">
@@ -15,8 +26,10 @@ export default function Navbar() {
 				<Link to='/carts'>Carts</Link>
 				<Link to='/products/new' className="text-2xl">Products</Link>
 
-				{/* login */}
-				<button type="button" onClick={login}>Login</button>
+				{/* 로그인한 사용자 없다면 login 버튼 노출 */}
+				{!user && <button type="button" onClick={handleLogin}>Login</button>}
+				{/* login 버튼 미노출 */}
+				{user && <button type="button" onClick={handleLogout}>Logout</button>}
 			</nav>
 		</header>
 	)

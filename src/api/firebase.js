@@ -1,31 +1,31 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 
+// #region (.env.local)
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   databaseURL: process.env.REACT_APP_FIREBASE_DB_URL,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
 };
+// #endregion 
 
+// #region (firebase에서 함수 호출)
 // firebase에서 제공하는 initializeApp함수 사용하여 초기화
 const app = initializeApp(firebaseConfig);
 // getAuth()하면 firebase에서 설정된 값이 포함된 auth를 리턴해 주는것 같다
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+// #endregion
 
-export function login() {
-	signInWithPopup(auth, provider)
+// #region login (비동기 함수 async추가)
+export async function login() {
+	return signInWithPopup(auth, provider)
   .then((result) => {
-
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    // const credential = GoogleAuthProvider.credentialFromResult(result);
-    // const token = credential.accessToken;
-    // The signed-in user info.
     const user = result.user;
 		console.log(user)
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
+
+		return user; // 로그인한 사용자 있다면 결과 리턴
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
@@ -37,3 +37,12 @@ export function login() {
     // ...
   });
 }
+// #endregion
+
+// #region logout
+export async function logout() {
+	console.log("logout !!!!!!!!!!!!")
+	// signOut 호출 시 auth 전달 필요
+	return signOut(auth).then(() => null);
+}
+// #endregion
