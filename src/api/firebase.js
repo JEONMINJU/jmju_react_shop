@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
 
-// #region (.env.local)
+// #region (.env.local 로컬 파일에 추가)
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -44,5 +44,14 @@ export async function logout() {
 	console.log("logout !!!!!!!!!!!!")
 	// signOut 호출 시 auth 전달 필요
 	return signOut(auth).then(() => null);
+}
+// #endregion
+
+// #region 사용자 로그인 상태 변경 감지
+export function onUserStateChange(callback) {
+	// 상태관찰 함수
+	onAuthStateChanged(auth, (user) => {
+		callback(user);
+	})
 }
 // #endregion
