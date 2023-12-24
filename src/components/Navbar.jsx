@@ -10,12 +10,11 @@ export default function Navbar() {
 
 	// 첫 로드시
 	useEffect(() => {
-		onUserStateChange((user) => {
-			console.log(user);
+		onUserStateChange(user => {
 			// 사용자 상태 변경될때마다 전달받은 상태값 user >>> setUser 셋팅
 			setUser(user);
 		})
-	})
+	}, []); // 빈배열을 넣어주지 않았을때 계속 리랜더링 되었음,,
 
 	// 로그인
 	const handleLogin = () => {
@@ -38,7 +37,9 @@ export default function Navbar() {
 			<nav className="flex items-center gap-4">
 				<Link to='/products'>Products</Link>
 				<Link to='/carts'>Carts</Link>
-				<Link to='/products/new' className="">Product registration</Link>
+
+				{/* user가 있고 isAdmin true일때만 노출 버튼*/}
+				{user && user.isAdmin && (<Link to='/products/new' className="">Product registration</Link>)}
 
 				{/* user객체 정보 전달받는 컴포넌트 */}
 				{user && <User user={user}/>}
