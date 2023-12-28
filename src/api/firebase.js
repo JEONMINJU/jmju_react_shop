@@ -22,32 +22,21 @@ const database = getDatabase(app);
 // #endregion
 
 // #region login (비동기 함수 async추가)
-export async function login() {
-	return signInWithPopup(auth, provider)
-  .then((result) => {
-    const user = result.user;
-		console.log(user)
-
-		return user; // 로그인한 사용자 있다면 결과 리턴
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
-  });
+export function login() {
+	signInWithPopup(auth, provider).catch(console.error);
 }
 // #endregion
 
 // #region logout
-export async function logout() {
-	console.log("logout !!!!!!!!!!!!")
+export function logout() {
 	// signOut 호출 시 auth 전달 필요
-	return signOut(auth).then(() => null);
+	// return signOut(auth).then(() => null);
+	signOut(auth).catch(console.error);
 }
+
+// export function logout() {
+// 	signOut(auth);
+// }
 // #endregion
 
 // #region 사용자 로그인 상태 변경 감지
