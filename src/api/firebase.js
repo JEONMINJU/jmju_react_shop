@@ -76,6 +76,7 @@ async function adminUser(user) {
 }
 // #endregion
 
+// #region 새로운 제품 추가
 export default function addNewProduct(product, image) {
   const id = uuid();
   return set(ref(database, `products/${id}`), {
@@ -86,3 +87,16 @@ export default function addNewProduct(product, image) {
     options: product.options.split(','),
   });
 }
+// #endregion
+
+// #region 제품 보여주기
+export async function getProducts() {
+	return get(ref(database, 'products')).then(snapshot => {
+		if(snapshot.exists()) { // exists()함수:파일 존재여부 체크
+			// snapshot형태 객체 형태이기 때문에 Object.values()사용. value값들만 배열로 반환
+			return Object.values(snapshot.val());
+		}
+		return [];
+	});
+}
+// #endregion
