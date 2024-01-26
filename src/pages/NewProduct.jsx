@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { addNewProduct } from '../api/firebase';
+import addNewProduct from '../api/firebase';
 import { uploadImage } from '../api/uploader';
 import Button from '../components/ui/Button';
 
 export default function NewProduct() {
   const [product, setProduct] = useState({});
   const [file, setFile] = useState();
+  // Uploading 체크
   const [isUploading, setIsUploading] = useState(false);
+  // Uploading 후
   const [success, setSuccess] = useState();
 
   const handleChange = (e) => {
@@ -20,10 +22,11 @@ export default function NewProduct() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    // 로딩 보여주고
     setIsUploading(true);
-    uploadImage(file) //
+    uploadImage(file)
       .then((url) => {
-        addNewProduct(product, url) //
+        addNewProduct(product, url)
           .then(() => {
             setSuccess('성공적으로 제품이 추가되었습니다.');
             setTimeout(() => {
@@ -94,6 +97,7 @@ export default function NewProduct() {
           onChange={handleChange}
         />
         <Button
+          onClick={handleSubmit}
           text={isUploading ? '업로드중...' : '제품 등록하기'}
           disabled={isUploading}
         />
