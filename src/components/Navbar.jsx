@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 // import { login, logout, onUserStateChange } from "../api/firebase";
 import User from "./User";
 import Button from "./ui/Button";
+import jmjImage from "../images/jmju.JPG";
 import { useAuthContext } from "./context/AuthContext";
 
 export default function Navbar() {
@@ -32,9 +33,12 @@ export default function Navbar() {
 
 	return (
 		<header className="flex justify-between border-b border-gray-300 p-2">
-			<Link to='/' className="flex items-center text-4xl text-brand">
+			<Link to='/' className="flex items-center text-4xl text-emerald-900">
 				{/* 아이콘 추가 필요 */}
-				<h1>Minju Shop</h1>
+				<figure className="w-12 h-12 border rounded-full overflow-hidden mr-2">
+					<img src={jmjImage} alt="전민주 로고이미지" />
+				</figure>
+				<h1 className="text-xl font-semibold">'s Backpacking</h1>
 			</Link>
 
 			<nav className="flex items-center gap-4">
