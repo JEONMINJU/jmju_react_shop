@@ -1,11 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductCard({
+	product,
 	product: { id, image, title, description, category, price }
 }) {
+	const navigate = useNavigate();
+
 	return (
 		/* 상품리스트 */
-		<li className='border rounded-lg shadow-md overflow-hidden cursor-pointer'>
+		<li onClick={() => {navigate(`/products/${id}`, {state:{product}})}} 
+			className='border rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105'>
 			{/* 이미지 */}
 			<img className='w-full' src={image} alt={title} />
 			{/* 정보 */}
