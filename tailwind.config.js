@@ -5,7 +5,10 @@ module.exports = {
     extend: {
       colors: {
         brand: '#F96162',
-      }
+      },
+      backgroundImage: {
+        banner: `url('../public/images/backpacking.jpeg')`
+      },
     },
   },
   plugins: [],
