@@ -37,6 +37,7 @@ const FooterSection = styled.section`
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
+	margin-top: 80px;
 	padding: 60px 30px;
 	background: black;
 
