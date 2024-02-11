@@ -10,11 +10,13 @@ export default function ProductCard({
 	return (
 		/* 상품리스트 */
 		<li onClick={() => {navigate(`/products/${id}`, {state:{product}})}} 
-			className='border rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105'>
+			className='border rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-100'>
 			{/* 이미지 */}
-			<img className='w-full' src={image} alt={title} />
+			<figure>
+				<img className='w-full' src={image} alt={title} />
+			</figure>
 			{/* 정보 */}
-			<div className='flex flex-col flex-start mt-4 mb-4 px-4'>
+			<div className='flex flex-col flex-start p-4 px-4 bg-slate-100'>
 				<strong className='text-sm'>brand name</strong>
 				<span className='text-base truncate'>{title}</span>
 				<span className='text-xs'>{description}</span>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import User from "./User";
 import Button from "./ui/Button";
 import jmjImage from "../images/jmju.JPG";
-import { useAuthContext } from "./context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 export default function Navbar() {
 	const { user, login, logout } = useAuthContext();

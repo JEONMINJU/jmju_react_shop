@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
 // 어드민 api
-import { getDatabase, ref, set, get } from 'firebase/database';
+import { getDatabase, ref, set, get, remove } from 'firebase/database';
 import { v4 as uuid } from 'uuid';
 
 // #region (.env.local 로컬 파일에 추가)
@@ -98,5 +98,25 @@ export async function getProducts() {
 		}
 		return [];
 	});
+}
+// #endregion
+
+// #region 장바구니 정보 가져오기
+export async function getCart(userId) {
+	return get(ref(database, `carts/${userId}`))
+		.then((snapshot) => {
+			const items = snapshot.val() || {};
+			console.log(items, "DDD")
+			return Object.values(items);
+		});
+}
+
+// 특정 사용자의 상품 추가
+export async function addOrUpdateToCart(userId, product) {
+	return set(ref(database, `carts/${userId}/${product.id}`), product)
+}
+
+export async function removeFromCart(userId, productId) {
+	return remove(ref(database, `carts/${userId}/${productId}`));
 }
 // #endregion
