@@ -5,6 +5,7 @@ import User from "./User";
 import Button from "./ui/Button";
 import jmjImage from "../images/jmju.JPG";
 import { useAuthContext } from "../context/AuthContext";
+import CartStatus from "./CartStatus";
 
 export default function Navbar() {
 	const { user, login, logout } = useAuthContext();
@@ -44,7 +45,7 @@ export default function Navbar() {
 			<nav className="flex items-center gap-4">
 				<Link to='/products'>Products</Link>
 				
-				{user && <Link to='/carts'>Carts</Link>}
+				{user && <Link to='/carts'><CartStatus /></Link>}
 
 				{/* user가 있고 isAdmin true일때만 노출 버튼*/}
 				{user && user.isAdmin && (<Link to='/products/new' className="">Product registration</Link>)}
