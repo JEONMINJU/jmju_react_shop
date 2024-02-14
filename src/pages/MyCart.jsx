@@ -23,7 +23,7 @@ export default function MyCart() {
     <p>장바구니</p>
     {!hasProducts && <span>장바구니에 등록된 상품이 없습니다.</span>}
     <ul>
-      {hasProducts && products.map((product) => (<CartItem key={product.id} product={product} />))}
+      {hasProducts && products.map((product) => (<CartItem key={product.id} product={product} uid={uid} />))}
     </ul>
     <div>
       <PriceCard text="상품 총액" price={totalPrice} />
