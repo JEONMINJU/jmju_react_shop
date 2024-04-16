@@ -20,13 +20,13 @@ export default function CartItem({
 	const handleDelete = () => removeFromCart(uid, id);
 	
 	return (
-		<li className='flex justify-between my-2 items-center'>
-			<img className='w-24 md:w-48 rounded-lg' src={image} alt={title} />
+		<li className='flex justify-between my-2 items-center p-4'>
+			<img className='w-24 md:w-48 border border-stone-300 rounded-md' src={image} alt={title} />
 			<div className='flex-1 flex justify-between ml-4'>
 				{/* basis flex 항목 초기크기 설정 */}
 				<div className='basis-3/5'>
-					<span className='text-lg'>{title}</span>
-					<strong className='text-xl font-bold text-brand'>{option}</strong>
+					<span className='text-lg'>{title} /</span>
+					<strong className='text-xl font-bold text-brand'> {option}</strong>
 					<p>{price}원</p>
 				</div>
 

@@ -17,7 +17,7 @@ export default function ProductCard({
 				<img src={image} alt={title} />
 			</figure>
 			{/* 정보 */}
-			<div className='flex flex-col flex-start p-4 px-4 min-h-40 bg-slate-100'>
+			<div className='flex flex-col flex-start p-4 px-4 min-h-40 bg-gray-50'>
 				<strong className='text-sm'>{category}</strong>
 				<span className='text-base truncate'>{title}</span>
 				<span className='text-xs mt-1'>{description}</span>
