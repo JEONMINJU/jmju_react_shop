@@ -27,7 +27,7 @@ export default function CartItem({
 				<div className='basis-3/5'>
 					<span className='text-lg'>{title}</span>
 					<strong className='text-xl font-bold text-brand'>{option}</strong>
-					<p>{price}</p>
+					<p>{price}원</p>
 				</div>
 
 				{/* 수량 컨트롤 */}

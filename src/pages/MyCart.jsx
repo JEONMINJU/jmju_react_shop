@@ -17,20 +17,21 @@ export default function MyCart() {
   if(isLoading) return <p>Loading...</p>
 
   const hasProducts = products && products.length > 0;
-  const totalPrice = products && products.reduce((prev, current) => prev + parseInt(current.price) * current.quantity);
+  const totalPrice = products && products.reduce((prev, current) => prev + parseInt(current.price) * current.quantity, 0);
 
   return <section>
-    <p>장바구니</p>
     {!hasProducts && <span>장바구니에 등록된 상품이 없습니다.</span>}
-    <ul>
-      {hasProducts && products.map((product) => (<CartItem key={product.id} product={product} uid={uid} />))}
-    </ul>
-    <div>
-      <PriceCard text="상품 총액" price={totalPrice} />
-      <BsFillPlusCircleFill />
-      <PriceCard text="배송비" price={shipping} />
-      <FaEquals/>
-      <PriceCard text="총가격" price={totalPrice + shipping} />
-    </div>
+    {hasProducts && <>
+      <ul>
+        {products && products.map((product) => (<CartItem key={product.id} product={product} uid={uid} />))}
+      </ul>
+      <div className='flex justify-between items-center'>
+          <PriceCard text="상품 총액" price={totalPrice} />
+          <BsFillPlusCircleFill className='shrink-0' />
+          <PriceCard text="배송비" price={shipping} />
+          <FaEquals/>
+          <PriceCard text="총가격" price={totalPrice + shipping} />
+        </div>
+    </>}
   </section>;
 }
